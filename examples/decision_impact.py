@@ -2,6 +2,7 @@ from base.sheet import *
 from base.helpers import *
 from models.abstract_application import App, AppHelper
 from models.distributions import Distribution
+from models.math_models import MathModel
 from models.metrics import Metrics
 from models.regression_models import HillMartyModel, ExtendedHillMartyModel, PollackModel
 from models.performance_models import PerformanceModel
@@ -263,21 +264,21 @@ def main():
         else:
             for sigma1 in sigmas:
                 for sigma2 in sigmas:
-                    logging.info('%%%%%%%%%%%%%%%%%%')
-                    logging.info('(sigma1, sigma2): ({}, {})'.format(sigma1, sigma2))
+                    logging.info('(sigma_app, sigma_arch): ({}, {})'.format(sigma1, sigma2))
+                    # Setting the ucertain level.
                     UncertaintyModel.set_rates(sigma2*design_risk_scale, sigma2)
-                    app = App('fake', mean_f, mean_c)
+                    app = App('abs', mean_f, mean_c)
                     if not args.trans:
-                        # We are using hand-written 'groundtruth' distributions.
+                        # Use groundtruth distributions.
                         if sigma1 > .0:
                             app.set_f(Distribution.NormalizedBinomialDistribution(
                                 mean_f, sigma1 * (1-mean_f)))
                             app.set_c(Distribution.NormalizedBinomialDistribution(
                                 mean_c, sigma1 * mean_c))
                     else:
-                        # We are using unified fitting distributions.
+                        # Use boxcox distributions.
                         if sigma1 > .0:
-                            # Step 1: sample from 'groundtruth'.
+                            # Step 1: sample from groundtruth.
                             # Step 2: generate distribution from box-cox transformation.
                             gt_f = Distribution.NormalizedBinomialDistribution(
                                     mean_f, sigma1 * (1-mean_f))
@@ -308,8 +309,10 @@ def parse_args():
     parser.add_argument('--log', action='store', dest='loglevel',
             help='set log level.')
     parser.add_argument('--math-model', action='store', default='symmetric',
+            choices=MathModel.names(),
             help='which math model to use: symmetric, asymmetric or dynamic')
-    parser.add_argument('--risk-func', action='store', dest='risk_func', default='linear',
+    parser.add_argument('--risk-func', action='store', dest='risk_func',
+            default='linear', choices=RiskFunctionCollection.risk_function_collection,
             help='select risk model to use: step, linear or quad.')
     parser.add_argument('--f', action='store', type=float, default=.9,
             help='Fixed f value to use.')

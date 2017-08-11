@@ -15,7 +15,11 @@ to the final responsive metrics.
 Archrisk depends on the following packages:
 
 numpy (v1.12.1)
+
 scipy (v0.18.1)
+
 mcerp (v0.11)
+
 sympy (v1.0.1)
+
 uncertainties (v3.0.1)

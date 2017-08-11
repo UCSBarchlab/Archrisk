@@ -86,3 +86,7 @@ class MathModel(object):
         else:
             logging.warn('Trying to get var on constant: {}'.format(result))
             return 0
+
+    @staticmethod
+    def names():
+        return ['symmetric', 'asymmetric', 'hete', 'dynamic']

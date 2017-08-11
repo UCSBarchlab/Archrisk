@@ -109,7 +109,7 @@ class Parser(object):
 
     def expand(self, exprs, idx_bounds, expanded_syms):
         logging.debug('Parser -- Idx bounds: {}'.format(idx_bounds))
-        logging.debug('Parser -- exprs: {}'.format(exprs))
+        logging.debug('Parser -- exprs:\n{}'.format('\n'.join(exprs)))
         expanded_exprs = copy.deepcopy(exprs)
         # For nested indexed symbols.
         for expr in exprs:
@@ -118,7 +118,7 @@ class Parser(object):
                 expanded_exprs.remove(expr)
                 expanded_exprs.append(ext_expr)
 
-        logging.debug('Parser -- ext exprs: {}'.format(expanded_exprs))
+        logging.debug('Parser -- ext exprs:\n{}'.format('\n'.join(expanded_exprs)))
         # For top-level indexed symbols.
         for idx in idx_bounds:
             pat = self._gen_pat_idx(idx)
@@ -131,5 +131,5 @@ class Parser(object):
                 # Expand equations with substitution.
                 expanded_exprs = self._gen_expr_by_sub(idx_syms,
                         sub_strs, expanded_exprs, keep=True if i < upper-1 else False)
-        logging.debug('Parser -- expanded exprs: {}'.format(expanded_exprs))
+        logging.debug('Parser -- expanded exprs:\n{}'.format('\n'.join(expanded_exprs)))
         return SympyHelper.initExprs(expanded_exprs, expanded_syms)

@@ -18,7 +18,7 @@ class PerformanceModel(MathModel):
     # Here's our cadidate core designs.
     designs = [8, 16, 32, 64, 128, 256]
 
-    def __init__(self, selected_model, risk_function, analytical):
+    def __init__(self, selected_model, risk_function, analytical=False):
         self.sheet1 = Sheet(analytical)
         self.sheet2 = Sheet(analytical)
         all_syms = (MathModel.index_syms +
