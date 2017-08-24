@@ -22,8 +22,6 @@ mcerp (v0.11)
 
 sympy (v1.0.1)
 
-uncertainties (v3.0.1)
-
 ### Example Usage
 
 ###### Covering design space with heterogeous architectural model, quadratic risk function and HPLC application:
