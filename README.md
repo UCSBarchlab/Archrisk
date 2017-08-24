@@ -32,8 +32,8 @@ python examples/DSE.py --log info --math-model hete --risk-func quad --f 0.999 -
 '''
 
 ###### To create your own model
-*Write equations in pure string form in models/math_models.py.
-*Enable selection of your model in models/performance_models.py.
-*Select and run.
+- Write equations in pure string form in models/math_models.py.
+- Enable selection of your model in models/performance_models.py.
+- Select and run.
 
 >Happy hacking!
