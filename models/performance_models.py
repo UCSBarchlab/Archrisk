@@ -140,7 +140,7 @@ class PerformanceModel(MathModel):
         self.add_given('core_design_num_'+str(len(self.designs)), 1 if area_left else 0)
         result = self.compute(self.sheet1, app)
         perf = result[self.perf_target]
-        energy = result[self.energy_target] if self.use_energy else -1
+        energy = result[self.energy_target] if self.use_energy else ''
         logging.info('PerfModel -- Result: {}, {}'.format(perf, energy))
         return perf
 
