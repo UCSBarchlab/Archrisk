@@ -27,9 +27,9 @@ uncertainties (v3.0.1)
 ### Example Usage
 
 ###### Covering design space with heterogeous architectural model, quadratic risk function and HPLC application.
-'''
+```
 python examples/DSE.py --log info --math-model hete --risk-func quad --f 0.999 --c 0.001
-'''
+```
 
 ###### To create your own model
 - Write equations in pure string form in models/math_models.py.
