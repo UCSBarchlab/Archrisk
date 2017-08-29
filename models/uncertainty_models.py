@@ -55,6 +55,16 @@ def design_pollack_boxcox_uncertainty(d, p0, perc):
     else:
         return gt_perf
 
+def fabrication_boxcox_uncertainty(d, n):
+    if n > 0:
+        func = UncertaintyModel.fabrication()
+        gt = func(d, n)
+        mean = gt.mean
+        std = gt.var ** .5
+        return Distribution.DistributionFromBoxCoxGaussian(mean, std, gt._mcpts, lower=0)
+    else:
+        return n
+
 class UncertaintyModel(object):
     """ This class defines the APIs to insert uncertainty models.
     """
@@ -86,6 +96,12 @@ class UncertaintyModel(object):
         chip_yield = functools.partial(get_yield, a=UncertaintyModel.fab_a,
                 d=UncertaintyModel.fab_d)
         return functools.partial(higher_order_bernoulli, func=chip_yield)
+
+    @staticmethod
+    def fabrication_boxcox():
+        if not UncertaintyModel.perf_variation_rate:
+            return lambda x, y: y
+        return functools.partial(fabrication_boxcox_uncertainty)
 
     @staticmethod
     def core_perf_lognorm():

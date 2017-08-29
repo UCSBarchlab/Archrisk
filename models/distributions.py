@@ -36,8 +36,11 @@ class Distribution(object):
         if upper is not None:
             upper = None
 
-        logging.debug('Distribution -- Boxcox sample size: {}'.format(
-            len(samples)))
+        k = 50
+        logging.debug('Distribution -- Boxcox sample size: {}'.format(k))
+        seeds = np.random.randint(0, len(samples), k)
+        train_set = np.asarray([samples[s] for s in seeds])
+        samples = train_set
 
         target_var = target_std * target_std
 

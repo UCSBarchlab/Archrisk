@@ -12,7 +12,7 @@ def FABRIC(size, design_num):
     """
     logging.debug('size: {}, design_num: {}'.format(size, design_num))
     assert size >= 0 and design_num >= 0, 'FABRIC -- size: {}, num: {}'.format(size, design_num)
-    num_func = UncertaintyModel.fabrication()
+    num_func = UncertaintyModel.fabrication_boxcox()
     return num_func(size, design_num)
 
 def PERF(arg):

@@ -24,12 +24,16 @@ sympy (v1.0.1)
 
 ### Example Usage
 
-###### Covering design space with heterogeous architectural model, quadratic risk function and HPLC application:
+###### Exhaustively search design space with heterogeous architectural model, quadratic risk function and HPLC application, using boxcox transformed distributions:
 ```
-python examples/DSE.py --log info --math-model hete --risk-func quad --f 0.999 --c 0.001
+python examples/DSE.py --log info --math-model hete --risk-func quad --f 0.999 --c 0.001 --trans
 ```
+>Above command may take up to a few hours to complete.
 
-###### To create your own model:
+###### Options that are hard-coded for now:
+- In base/eval_functions.py, PERF and FABRIC functions are hard-coded. Change them to other functions defined in models/uncertainty_models.py to run with ground truth distributions.
+
+###### To create and run your own model:
 - Write equations in pure string form in models/math_models.py.
 - Enable selection of your model in models/performance_models.py.
 - Select and run.
