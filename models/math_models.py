@@ -24,14 +24,13 @@ class MathModel(object):
     index_syms = ['i']
 
     config_syms = ['core_design_size_i', 'core_design_num_i',
-            'core_size_i', 'core_num_i', 'core_perf_i', 'core_power_i',
-            'idle_power_ratio']
+            'core_size_i', 'core_num_i', 'core_perf_i']
 
     perf_syms = ['f', 'c', 't_s', 't_p']
 
     power_syms = ['e_s', 'e_p', 'p_s', 'p_p']
 
-    stat_syms = ['execute_time', 'speedup', 'energy', 'energy_delay_product']
+    stat_syms = ['execute_time', 'speedup']
 
     #============================================================================
     # define system equations

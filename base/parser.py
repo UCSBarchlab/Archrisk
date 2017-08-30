@@ -104,7 +104,6 @@ class Parser(object):
             for i in xrange(*idx_bounds[idx]):
                 new_syms = self._gen_pat_sub(idx_syms, i)
                 expanded_syms.update(SympyHelper.initSyms(new_syms))
-        logging.debug('Parser -- expanded syms: {}'.format(expanded_syms))
         return expanded_syms
 
     def expand(self, exprs, idx_bounds, expanded_syms):

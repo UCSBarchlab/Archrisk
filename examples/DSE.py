@@ -30,7 +30,7 @@ def main():
     mean_f, mean_c = args.f, args.c
 
     # Design uncertainty constants.
-    design_risk_scale = .2
+    design_risk_scale = .1
 
     # Set application type.
     app = App('fake', mean_f, mean_c)

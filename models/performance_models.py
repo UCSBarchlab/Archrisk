@@ -18,7 +18,8 @@ class PerformanceModel(MathModel):
     # Here's our cadidate core designs.
     designs = [8, 16, 32, 64, 128, 256]
 
-    def __init__(self, selected_model, risk_function, analytical=False):
+    def __init__(self, selected_model, risk_function,
+            use_energy=False, analytical=False):
         self.sheet1 = Sheet(analytical)
         self.sheet2 = Sheet(analytical)
         all_syms = (MathModel.index_syms +
@@ -49,10 +50,7 @@ class PerformanceModel(MathModel):
         self.ims = defaultdict()
         self.target = []
         self.risk_func = risk_function
-        self.use_energy = False
-
-    def use_energy(self):
-        self.use_energy = True
+        self.use_energy = use_energy
 
     def gen_feed(self, k2v):
         """ Generates feed string to calculation sheets from key-value pairs.
@@ -203,9 +201,6 @@ class PerformanceModel(MathModel):
         self.add_index_bounds('i', upper=len(self.designs)+1)
         self.compute_core_perfs(app)
         self.add_target(self.perf_target)
-        if self.use_energy:
-            self.add_given('idle_power_ratio', .2)
-            self.add_target(self.energy_target)
         self.iter_through_design(d2perf, 0, n_designs, candidate, app)
         return d2perf
 

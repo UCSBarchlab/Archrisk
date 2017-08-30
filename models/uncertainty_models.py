@@ -123,7 +123,7 @@ class UncertaintyModel(object):
                     perc=UncertaintyModel.perf_variation_rate)
 
     @staticmethod
-    def core_perf_gaussian(p0, perc, a = None, b = None):
+    def core_perf_gaussian(a = None, b = None):
         """ Similar to above but based on a Gaussian prior distribution.
         """
 

@@ -10,7 +10,7 @@ from models.uncertainty_models import UncertaintyModel
 def FABRIC(size, design_num):
     """ Compute the fabricated number of cores.
     """
-    logging.debug('size: {}, design_num: {}'.format(size, design_num))
+    logging.debug('FABRIC -- size: {}, design_num: {}'.format(size, design_num))
     assert size >= 0 and design_num >= 0, 'FABRIC -- size: {}, num: {}'.format(size, design_num)
     num_func = UncertaintyModel.fabrication_boxcox()
     return num_func(size, design_num)
