@@ -22,21 +22,10 @@ def PERF(arg):
     perf_func = UncertaintyModel.core_perf_boxcox()
     return perf_func(arg)
 
-def POWER(arg):
-    perf2power = 1.75 
-    if isinstance(arg, UncertainFunction):
-        assert (arg._mcpts >= 0).all(), 'CORE_POWER -- Found negative core perf from {}'.format(arg)
-    else:
-        assert arg >= 0, 'CORE_POWER -- Core perf {} is negative'.format(arg)
-    power = arg ** perf2power
-    logging.debug('POWER -- {}'.format(power))
-    return power
-
-def SUM(arg):
+def SUM(*arg):
     """ Take the sum of the input list.
     """
     arg = np.asarray(arg) * np.ones(1)
-    logging.debug('SUM -- arg: {}'.format(arg))
     return reduce(lambda x,y: x+y, arg)
 
 def __has_distribution(args):
@@ -60,11 +49,9 @@ def CONDMAX(*arg):
 
     ns = arg[::2]
     ps = arg[1::2]
-    logging.debug('CONDMAX -- ns: {} ps: {}'.format(ns, ps))
     assert ns and ps and len(ns) == len(ps)
 
     if not __has_distribution(ns) and not __has_distribution(ps):
-        logging.debug('CONDMAX -- Scalar candidates with scalar conditions.')
         candidate = [p for n, p in zip(ns, ps) if n > 0]
         return max(candidate)
     else:

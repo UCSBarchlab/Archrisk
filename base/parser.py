@@ -9,7 +9,7 @@ from sets import Set
 class Parser(object):
     START_CHAR = ['[', '{']
     END_CHAR = [']', '}']
-    EXT_OP = ['+', ',']
+    EXT_OP = [',', ',']
     
     def __init__(self):
         assert len(self.START_CHAR) == len(self.END_CHAR)

@@ -13,20 +13,17 @@ class PerformanceModel(MathModel):
     # We are fixing the total number of resources on chip.
     area = 256
     perf_target = 'speedup'
-    energy_target = 'energy'
 
     # Here's our cadidate core designs.
     designs = [8, 16, 32, 64, 128, 256]
 
-    def __init__(self, selected_model, risk_function,
-            use_energy=False, analytical=False):
+    def __init__(self, selected_model, risk_function, analytical=False):
         self.sheet1 = Sheet(analytical)
         self.sheet2 = Sheet(analytical)
         all_syms = (MathModel.index_syms +
                 MathModel.config_syms +
                 MathModel.perf_syms +
-                MathModel.stat_syms +
-                MathModel.power_syms)
+                MathModel.stat_syms)
         self.sheet1.addSyms(all_syms)
         self.sheet2.addSyms(all_syms)
         self.sheet1.addFuncs(MathModel.custom_funcs)
@@ -50,7 +47,6 @@ class PerformanceModel(MathModel):
         self.ims = defaultdict()
         self.target = []
         self.risk_func = risk_function
-        self.use_energy = use_energy
 
     def gen_feed(self, k2v):
         """ Generates feed string to calculation sheets from key-value pairs.
@@ -138,8 +134,7 @@ class PerformanceModel(MathModel):
         self.add_given('core_design_num_'+str(len(self.designs)), 1 if area_left else 0)
         result = self.compute(self.sheet1, app)
         perf = result[self.perf_target]
-        energy = result[self.energy_target] if self.use_energy else ''
-        logging.info('PerfModel -- Result: {}, {}'.format(perf, energy))
+        logging.info('PerfModel -- Result: {}'.format(perf))
         return perf
 
     def iter_through_design(self, d2perf, ith, stop, candidate, app):
@@ -179,17 +174,11 @@ class PerformanceModel(MathModel):
         for i, d in enumerate(self.designs):
             self.add_given('core_design_size_'+str(i), d)
             self.add_target('core_perf_'+str(i))
-            if self.use_energy:
-                self.add_target('core_power_'+str(i))
         result = self.compute(self.sheet2, app)
         for i, d in enumerate(self.designs):
             name = 'core_perf_'+str(i)
             self.add_given(name, result[name])
-            logging.debug('Core perf: {}'.format(result[name]))
-            if self.use_energy:
-                name = 'core_power_'+str(i)
-                self.add_given(name, result[name])
-                logging.debug('Core power: {}'.format(result[name]))
+            logging.debug('{}: {}'.format(name, result[name]))
         self.clear_targets()
 
     def get_perf(self, app):

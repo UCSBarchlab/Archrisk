@@ -15,8 +15,7 @@ class MathModel(object):
     # define mapping between custom Symbols -> eval functions
     #==========================================================================
     custom_funcs = {'FABRIC': FABRIC, 'PERF': PERF,
-            'POWER': POWER, 'SUM': SUM,
-            'CONDMAX': CONDMAX}
+            'SUM': SUM, 'CONDMAX': CONDMAX}
 
     #==========================================================================
     # define all symbols in the system
@@ -27,8 +26,6 @@ class MathModel(object):
             'core_size_i', 'core_num_i', 'core_perf_i']
 
     perf_syms = ['f', 'c', 't_s', 't_p']
-
-    power_syms = ['e_s', 'e_p', 'p_s', 'p_p']
 
     stat_syms = ['execute_time', 'speedup']
 
