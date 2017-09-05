@@ -23,8 +23,8 @@ class Distribution(object):
     @staticmethod
     def ConstantDistribution(val):
         # type-safe but slower
-        #X = Distribution.GetDummy()
-        #X._mcpts = np.asarray([val] * mcerp.npts)
+        # X = Distribution.GetDummy()
+        # X._mcpts = np.asarray([val] * mcerp.npts)
         return val
 
     @staticmethod
