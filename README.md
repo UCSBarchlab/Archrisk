@@ -39,3 +39,23 @@ python examples/DSE.py --log info --math-model hete --risk-func quad --f 0.999 -
 - Select and run.
 
 >Happy hacking!
+
+###### Citation:
+
+@inproceedings{Cui:2017:EUA:3123939.3124541,
+ author = {Cui, Weilong and Sherwood, Timothy},
+ title = {Estimating and Understanding Architectural Risk},
+ booktitle = {Proceedings of the 50th Annual IEEE/ACM International Symposium on Microarchitecture},
+ series = {MICRO-50 '17},
+ year = {2017},
+ isbn = {978-1-4503-4952-9},
+ location = {Cambridge, Massachusetts},
+ pages = {651--664},
+ numpages = {14},
+ url = {http://doi.acm.org/10.1145/3123939.3124541},
+ doi = {10.1145/3123939.3124541},
+ acmid = {3124541},
+ publisher = {ACM},
+ address = {New York, NY, USA},
+ keywords = {architecture modelling, core selection, random variable, uncertainty},
+}
