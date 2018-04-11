@@ -22,6 +22,8 @@ mcerp (v0.11)
 
 sympy (v1.0.1)
 
+lmfit (v0.9.9)
+
 ### Example Usage
 
 ###### Exhaustively search design space with heterogeous architectural model, quadratic risk function and HPLC application, using boxcox transformed distributions:
@@ -40,6 +42,6 @@ python examples/DSE.py --log info --math-model hete --risk-func quad --f 0.999 -
 
 >Happy hacking!
 
-###### Citation:
+### Citation:
 
 Weilong Cui and Timothy Sherwood. 2017. Estimating and understanding architectural risk. In Proceedings of the 50th Annual IEEE/ACM International Symposium on Microarchitecture (MICRO-50 '17). ACM, New York, NY, USA, 651-664. DOI: https://doi.org/10.1145/3123939.3124541
