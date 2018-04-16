@@ -45,3 +45,5 @@ python examples/DSE.py --log info --math-model hete --risk-func quad --f 0.999 -
 ### Citation:
 
 Weilong Cui and Timothy Sherwood. 2017. Estimating and understanding architectural risk. In Proceedings of the 50th Annual IEEE/ACM International Symposium on Microarchitecture (MICRO-50 '17). ACM, New York, NY, USA, 651-664. DOI: https://doi.org/10.1145/3123939.3124541
+
+Weilong Cui and Timothy Sherwood. "Architectural Risk" in IEEE Micro: Micro's Top Picks from Computer Architecture Conferences, January-February 2018.
