@@ -13,7 +13,6 @@ from scipy.optimize import minimize
 from uncertainties import umath as a_umath
 from uncertainties import wrap as uwrap
 from uncertainties import ufloat
-from utils.gaussian_decomposition import gaussian_decomposition
 from utils.softmax import SoftMaximum
 import logging
 import numpy as np
@@ -135,27 +134,6 @@ class Sheet(object):
             for t in response:
                 self._predSanityCheck(t, PredType.RESPONSE)
                 self.response.add(self.syms[t])
-
-    def conv2analytical_GMM(self, given):
-        """ Converts given MC to a vector of Gaussians using GMM EM fitting.
-        The conversion result of this function are a vector of KNOWN gaussians,
-        so the collapsing with uncertainties package won't lose shape of the
-        distribution at this point.
-        """
-
-        result = []
-        for q in given:
-            if isinstance(q, UncertainFunction):
-                components = gaussian_decomposition(q)
-                mix = 0
-                for (pi, mu, sigma) in components:
-                    mix += pi * ufloat(mu, sigma)
-                logging.debug('Original Dist: {}, {}\nDecomposed Mix Dist: {}, {}'.format(
-                    q.mean, (q.var)**.5, mix.n, mix.std_dev))
-                result.append(mix)
-            else:
-                result.append(q)
-        return result
 
     def conv2analytical_simple_compression(self, given):
         """

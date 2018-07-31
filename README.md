@@ -24,6 +24,8 @@ sympy (v1.0.1)
 
 lmfit (v0.9.9)
 
+Add path to Archrisk to PYTHONPATH.
+
 ### Example Usage
 
 ###### Exhaustively search design space with heterogeous architectural model, quadratic risk function and HPLC application, using boxcox transformed distributions:

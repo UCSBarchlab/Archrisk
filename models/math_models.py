@@ -47,10 +47,10 @@ class MathModel(object):
             ]
 
     symm_exprs = [
-            'small_core_perf = sqrt(small_core_size)',
-            't_s = (1 - f + small_core_num * c)/small_core_perf',
-            't_p = f/(small_core_num * small_core_perf)',
-            'small_core_num = area_total / small_core_size',
+            'core_perf = sqrt(core_size)',
+            't_s = (1 - f + core_num * c)/core_perf',
+            't_p = f/(core_num * core_perf)',
+            'core_num = area_total / core_size',
             ]
 
     asymm_exprs = [
