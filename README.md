@@ -16,7 +16,7 @@ Archrisk depends on the following packages:
 
 numpy (v1.12.1)
 
-scipy (v0.18.1)
+scipy ( <= v0.19.1)
 
 mcerp (v0.11)
 
